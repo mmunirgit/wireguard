@@ -1,0 +1,26 @@
+version: "2.1"
+services:
+  wireguard:
+    image: ghcr.io/linuxserver/wireguard
+    container_name: wireguard2
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Eastern
+      - SERVERURL=madmaxxxz.duckdns.org
+      - SERVERPORT=51820 
+      - PEERS=munir-ios, munir-desktop, alia, rashda
+      - PEERDNS=10.13.13.1, 8.8.8.8
+      - INTERNAL_SUBNET=10.13.13.0 
+      - ALLOWEDIPS=0.0.0.0/0 
+    volumes:
+      - /var/lib/wireguard2/config:/config
+      - /var/lib/wireguard2/lib/modules:/lib/modules
+    ports:
+      - 51820:51820/udp
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
