@@ -1,5 +1,5 @@
 docker run -d \
-  --name=wireguard \
+  --name=wireguard3 \
   --cap-add=NET_ADMIN \
   --cap-add=SYS_MODULE \
   -e PUID=1000 \
@@ -12,8 +12,8 @@ docker run -d \
   -e INTERNAL_SUBNET=10.13.13.0 \
   -e ALLOWEDIPS=0.0.0.0/0 \
   -p 51820:51820/udp \
-  -v /var/lib/wireguard/config:/config \
-  -v /var/lib/wireguard/lib/modules:/lib/modules \
+  -v /var/lib/wireguard3/config:/config \
+  -v /var/lib/wireguard3/lib/modules:/lib/modules \
   --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
   --restart unless-stopped \
   linuxserver/wireguard
